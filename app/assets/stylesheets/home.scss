@@ -2,35 +2,36 @@
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .gallery {
-  -webkit-column-count: 3;
-  -moz-column-count: 3;
   column-count: 3;
-  -webkit-column-width: 33%;
-  -moz-column-width: 33%;
-  column-width: 33%;
-  .pics {
-    -webkit-transition: all 350ms ease;
-    transition: all 350ms ease;
-  }
-  .animation {
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-  }
 }
 @media (max-width: 450px) {
   .gallery {
-    -webkit-column-count: 1;
-    -moz-column-count: 1;
     column-count: 1;
-    -webkit-column-width: 100%;
-    -moz-column-width: 100%;
     column-width: 100%;
   }
 }
-@media (max-width: 400px) {
-  .btn.filter {
-    padding-left: 1.1rem;
-    padding-right: 1.1rem;
-  }
+.text-block {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: #000000a6;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.container {
+  position: relative;
+}
+.fa {
+  font-size: 50px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.like:hover {
+  color: red;
+}
+
+.dislike:hover{
+  color: black;
 }

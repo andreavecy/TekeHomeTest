@@ -1,27 +1,15 @@
-<!-- Grid row -->
 <div class="row">
-
 </div>
-<!-- Grid row -->
-
-<!-- Grid row -->
 <div class="gallery" id="gallery">
-  <!-- Grid column -->
-  <div class="mb-3 pics animation all 2">
     <% @photos.each do |photo| %>
-      <p><%= photo["alt_description"] %></p>
-      <p><%= photo["liked_by_user"] %></p>
+    <div class="container">
+      <div class="text-block">
+        <p><%= photo["alt_description"] %></p>
+        <%= button_to like(photo.id), {:controller => "favorites", :action => 'create', :unsplash_id => photo["id"], :description => photo["alt_description"], :image_url => photo['urls']['small']}, :method => :post %>
+        <%= button_to like(photo.id), delete_favorite_path(unsplash_id: photo.id),
+                      method: :delete%>
+      </div>
       <img class="img-fluid" src="<%= photo['urls']['small']%>" alt="Card image cap">
+    </div>
     <% end %>
-  </div>
-  <!-- Grid column -->
-
 </div>
-<!-- Grid row -->
-
-<div class="container">
-  <div class="row">
-
-  </div>
-</div>
-

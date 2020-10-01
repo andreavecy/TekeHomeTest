@@ -1,74 +1,44 @@
 class FavoritesController < ApplicationController
-  before_action :set_favorite, only: [:show, :edit, :update, :destroy]
 
-  # GET /favorites
-  # GET /favorites.json
   def index
     @favorites = Favorite.all
   end
 
-  # GET /favorites/1
-  # GET /favorites/1.json
   def show
   end
 
-  # GET /favorites/new
   def new
     @favorite = Favorite.new
   end
 
-  # GET /favorites/1/edit
   def edit
   end
 
-  # POST /favorites
-  # POST /favorites.json
   def create
-    @favorite = Favorite.new(favorite_params)
-
+    @like = Favorite.create(favorite_params)
     respond_to do |format|
-      if @favorite.save
-        format.html { redirect_to @favorite, notice: 'Favorite was successfully created.' }
-        format.json { render :show, status: :created, location: @favorite }
-      else
-        format.html { render :new }
-        format.json { render json: @favorite.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /favorites/1
-  # PATCH/PUT /favorites/1.json
-  def update
-    respond_to do |format|
-      if @favorite.update(favorite_params)
-        format.html { redirect_to @favorite, notice: 'Favorite was successfully updated.' }
+      if @like.update(favorite_params)
+        format.html { redirect_to root_path, notice: 'Liked' }
         format.json { render :show, status: :ok, location: @favorite }
       else
-        format.html { render :edit }
-        format.json { render json: @favorite.errors, status: :unprocessable_entity }
+        format.html { render root_path, notice: 'Error..' }
+        format.json { render json: @like.errors, status: :unprocessable_entity }
       end
-    end
+      end
   end
 
-  # DELETE /favorites/1
-  # DELETE /favorites/1.json
   def destroy
-    @favorite.destroy
+    @favorite = Favorite.find_by(unsplash_id: params[:unsplash_id])
+    @favorite.delete
     respond_to do |format|
-      format.html { redirect_to favorites_url, notice: 'Favorite was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'like was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_favorite
-      @favorite = Favorite.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
     def favorite_params
-      params.fetch(:favorite, {})
+      params.permit(:unsplash_id, :description, :image_url)
     end
 end
