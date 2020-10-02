@@ -39,5 +39,5 @@ test:
 production:
   <<: *default
   database: TakeHomeTest_production
-  username: TakeHomeTest
+  username: takehometest
   password: <%= ENV['TAKEHOMETEST_DATABASE_PASSWORD'] %>

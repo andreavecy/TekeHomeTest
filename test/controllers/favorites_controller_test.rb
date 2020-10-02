@@ -6,43 +6,25 @@ class FavoritesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get favorites_url
+    get my_favorites_url
     assert_response :success
   end
 
-  test "should get new" do
-    get new_favorite_url
-    assert_response :success
-  end
 
   test "should create favorite" do
     assert_difference('Favorite.count') do
-      post favorites_url, params: { favorite: {  } }
+      post favorite_url, params: {:unsplash_id => '1', :description => 'anything', :image_url => 'url'}
     end
 
-    assert_redirected_to favorite_url(Favorite.last)
+    assert_redirected_to root_path
   end
 
-  test "should show favorite" do
-    get favorite_url(@favorite)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_favorite_url(@favorite)
-    assert_response :success
-  end
-
-  test "should update favorite" do
-    patch favorite_url(@favorite), params: { favorite: {  } }
-    assert_redirected_to favorite_url(@favorite)
-  end
 
   test "should destroy favorite" do
     assert_difference('Favorite.count', -1) do
-      delete favorite_url(@favorite)
+      delete delete_favorite_url(@favorite)
     end
 
-    assert_redirected_to favorites_url
+    assert_redirected_to root_path
   end
 end

@@ -1,5 +1,9 @@
 class HomeController < ApplicationController
   def index
-    @photos = Unsplash::Photo.all
+    if params[:query]
+      @photos = Unsplash::Photo.search(params[:query])
+    else
+      @photos = Unsplash::Photo.all
+    end
   end
 end

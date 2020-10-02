@@ -1,15 +1,17 @@
 <div class="row">
 </div>
 <div class="gallery" id="gallery">
-    <% @photos.each do |photo| %>
-    <div class="container">
+  <% @photos.each do |photo| %>
+    <div class="container animation">
       <div class="text-block">
         <p><%= photo["alt_description"] %></p>
-        <%= button_to like(photo.id), {:controller => "favorites", :action => 'create', :unsplash_id => photo["id"], :description => photo["alt_description"], :image_url => photo['urls']['small']}, :method => :post %>
-        <%= button_to like(photo.id), delete_favorite_path(unsplash_id: photo.id),
-                      method: :delete%>
+        <% if like(photo.id) == "Like" %>
+          <%= button_to like(photo.id), {:controller => "favorites", :action => 'create', :unsplash_id => photo["id"], :description => photo["alt_description"], :image_url => photo['urls']['small']}, :method => :post, :class => 'btn btn-primary Like' %>
+        <% else %>
+          <%= button_to like(photo.id), delete_favorite_path(unsplash_id: photo.id), method: :delete, :class => 'btn btn-danger UnLike' %>
+        <% end %>
       </div>
-      <img class="img-fluid" src="<%= photo['urls']['small']%>" alt="Card image cap">
+      <img class="img-fluid" src="<%= photo['urls']['small'] %>">
     </div>
-    <% end %>
+  <% end %>
 </div>

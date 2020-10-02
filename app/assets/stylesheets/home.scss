@@ -21,6 +21,7 @@
 }
 .container {
   position: relative;
+  margin-top: 5%;
 }
 .fa {
   font-size: 50px;
@@ -28,10 +29,30 @@
   user-select: none;
 }
 
-.like:hover {
-  color: red;
+.btn{
+  margin-bottom: 2% !important;
 }
 
-.dislike:hover{
-  color: black;
+.Like:hover {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+}
+
+.UnLike:hover{
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+}
+
+.animation{
+  transition: transform .8s; /* Animation */
+}
+
+.animation:hover{
+  -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1);
+}
+
+.nav{
+  height: 50px;
 }

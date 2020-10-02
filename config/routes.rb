@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'home#index'
   post 'like', to: 'favorites#create', as: 'favorite'
   delete 'unlike', to: 'favorites#destroy', as: 'delete_favorite'
+  get 'favorites', to: 'favorites#index', as: 'my_favorites'
 end
